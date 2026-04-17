@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>雪球观察周报 | 储能电池ETF对比 | 2026.04.14–04.17</title>
+<style>
+  :root {
+    --primary: #1a73e8;
+    --accent: #e8f0fe;
+    --red: #d93025;
+    --green: #0d904f;
+    --orange: #e37400;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --border: #e0e0e0;
+    --text: #202124;
+    --text2: #5f6368;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 24px 16px; }
+  
+  /* Header */
+  .header { background: linear-gradient(135deg, #1a73e8, #4285f4); color: #fff; border-radius: 16px; padding: 40px 36px; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .header::after { content:''; position:absolute; right:-40px; top:-40px; width:200px; height:200px; background:rgba(255,255,255,0.08); border-radius:50%; }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .header .subtitle { font-size: 15px; opacity: 0.85; }
+  .header .period { display:inline-block; background:rgba(255,255,255,0.2); padding:4px 14px; border-radius:20px; font-size:13px; margin-top:12px; }
+  
+  /* Cards */
+  .card { background: var(--card); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); padding: 28px; margin-bottom: 20px; border: 1px solid var(--border); }
+  .card h2 { font-size: 18px; color: var(--primary); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+  .card h2 .icon { font-size: 22px; }
+  .card h3 { font-size: 15px; color: var(--text); margin: 18px 0 10px; }
+
+  /* Summary boxes */
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .summary-box { background: var(--accent); border-radius: 10px; padding: 20px; text-align: center; }
+  .summary-box .label { font-size: 13px; color: var(--text2); margin-bottom: 6px; }
+  .summary-box .value { font-size: 26px; font-weight: 700; color: var(--primary); }
+  .summary-box .sub { font-size: 12px; color: var(--text2); margin-top: 4px; }
+  .summary-box.green .value { color: var(--green); }
+  .summary-box.red .value { color: var(--red); }
+
+  /* Comparison Table */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { background: var(--accent); color: var(--primary); font-weight: 600; padding: 10px 12px; text-align: left; white-space: nowrap; }
+  td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; }
+  tr:hover td { background: #fafbfc; }
+  .up { color: var(--red); font-weight: 600; }
+  .down { color: var(--green); font-weight: 600; }
+  .tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:12px; font-weight:500; }
+  .tag-v { background:#e8f5e9; color:#2e7d32; }
+  .tag-kol { background:#fff3e0; color:#e65100; }
+  .tag-media { background:#e3f2fd; color:#1565c0; }
+  .tag-retail { background:#f3e5f5; color:#7b1fa2; }
+  .tag-official { background:#fce4ec; color:#c62828; }
+
+  /* KOL Card */
+  .kol-item { background: #fafbfc; border-radius: 8px; padding: 16px; margin-bottom: 12px; border-left: 3px solid var(--primary); }
+  .kol-item .kol-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .kol-item .kol-name { font-weight: 600; font-size: 14px; }
+  .kol-item .kol-fans { font-size: 12px; color: var(--text2); }
+  .kol-item .kol-date { font-size: 12px; color: var(--text2); margin-left: auto; }
+  .kol-item .kol-content { font-size: 13px; color: var(--text); line-height: 1.7; }
+  .kol-item .kol-title { font-weight: 600; font-size: 14px; color: #333; margin-bottom: 4px; }
+  .kol-item .kol-engagement { display:flex; gap:16px; margin-top:8px; font-size:12px; color:var(--text2); }
+
+  /* Metrics comparison */
+  .metrics-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .metric-card { background: #fafbfc; border-radius: 8px; padding: 16px; }
+  .metric-card .name { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+  .metric-card .item { display: flex; justify-content: space-between; padding: 4px 0; font-size: 13px; }
+  .metric-card .item .lbl { color: var(--text2); }
+
+  /* Highlight */
+  .highlight { background: #fffde7; border-left: 3px solid var(--orange); padding: 12px 16px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 13px; }
+  
+  /* Footer */
+  .footer { text-align: center; padding: 24px; font-size: 12px; color: var(--text2); }
+
+  /* Mention bar */
+  .mention-bar { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+  .mention-bar .bar { height: 20px; border-radius: 4px; display: flex; align-items: center; padding: 0 8px; font-size: 11px; color: #fff; font-weight: 600; min-width: 30px; }
+  .mention-bar .bar.efund { background: var(--primary); }
+  .mention-bar .bar.gfund { background: var(--orange); }
+  .mention-bar .lbl { font-size: 13px; color: var(--text2); min-width: 80px; }
+
+  @media (max-width: 640px) {
+    .summary-grid, .metrics-row { grid-template-columns: 1fr; }
+    .container { padding: 12px 8px; }
+    .header { padding: 24px 20px; }
+    .card { padding: 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <h1>📊 雪球观察周报 · 储能电池ETF对比</h1>
+  <div class="subtitle">储能电池ETF易方达（159566） vs 储能电池ETF广发（159305）</div>
+  <div class="period">📅 观察周期：2026年4月14日（周一）— 4月17日（周四）</div>
+</div>
+
+<!-- ===== 一、行情概览 ===== -->
+<div class="card">
+  <h2><span class="icon">📈</span> 一、本周行情概览</h2>
+  <div class="summary-grid">
+    <div class="summary-box green">
+      <div class="label">易方达 159566 · 周四收盘</div>
+      <div class="value">2.341</div>
+      <div class="sub">周涨幅约 +3.10% · 年初至今 +11.85%</div>
+    </div>
+    <div class="summary-box green">
+      <div class="label">广发 159305 · 周四收盘</div>
+      <div class="value">2.074</div>
+      <div class="sub">周涨幅约 +3.02% · 年初至今 +11.99%</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>日期</th>
+        <th colspan="3" style="text-align:center">易方达 159566</th>
+        <th colspan="3" style="text-align:center">广发 159305</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>收盘价</th><th>涨跌幅</th><th>成交额</th>
+        <th>收盘价</th><th>涨跌幅</th><th>成交额</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>4/14 周一</strong></td>
+        <td>2.323</td><td class="up">+2.73%</td><td>8.12亿</td>
+        <td>2.057</td><td class="up">+2.83%</td><td>7808万</td>
+      </tr>
+      <tr>
+        <td><strong>4/15 周二</strong></td>
+        <td>2.302</td><td class="down">-0.90%</td><td>4.92亿</td>
+        <td>2.038</td><td class="down">-0.92%</td><td>5926万</td>
+      </tr>
+      <tr>
+        <td><strong>4/16 周三</strong></td>
+        <td>2.333</td><td class="up">+1.35%</td><td>~5.5亿</td>
+        <td>2.070</td><td class="up">+1.57%</td><td>~6500万</td>
+      </tr>
+      <tr>
+        <td><strong>4/17 周四</strong></td>
+        <td>2.341</td><td class="up">+0.34%</td><td>4.19亿</td>
+        <td>2.074</td><td class="up">+0.19%</td><td>7267万</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight">
+    💡 <strong>走势特征</strong>：两只ETF本周呈"周一大涨→周二回调→周三反包→周四窄幅震荡"格局，走势高度同步。易方达日均成交额约5.7亿元，是广发的8倍以上，流动性优势明显。
+  </div>
+</div>
+
+<!-- ===== 二、规模与资金流 ===== -->
+<div class="card">
+  <h2><span class="icon">💰</span> 二、产品规模与资金流向</h2>
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="name">🔵 易方达 159566</div>
+      <div class="item"><span class="lbl">最新市值</span><span><strong>79.8亿元</strong></span></div>
+      <div class="item"><span class="lbl">总份额（估）</span><span>~34.1亿份</span></div>
+      <div class="item"><span class="lbl">4/14 净申购</span><span class="up">+1,300万份</span></div>
+      <div class="item"><span class="lbl">4/15 净申购</span><span class="up">+8,000万份</span></div>
+      <div class="item"><span class="lbl">4/16 净申购</span><span class="up">+4,000万份</span></div>
+      <div class="item"><span class="lbl">连续净流入</span><span class="up">5个交易日，合计3.6亿元</span></div>
+    </div>
+    <div class="metric-card">
+      <div class="name">🟠 广发 159305</div>
+      <div class="item"><span class="lbl">最新市值</span><span><strong>7.9亿元</strong></span></div>
+      <div class="item"><span class="lbl">总份额（估）</span><span>~3.8亿份</span></div>
+      <div class="item"><span class="lbl">近一月净流入</span><span class="up">3.28亿元</span></div>
+      <div class="item"><span class="lbl">成立日期</span><span>2024-09-18</span></div>
+      <div class="item"><span class="lbl">本周资金</span><span>未披露逐日数据</span></div>
+      <div class="item"><span class="lbl">规模对比</span><span>约为易方达的 1/10</span></div>
+    </div>
+  </div>
+  <div class="highlight">
+    💡 <strong>资金面判断</strong>：易方达在周二大盘回调日仍获 8000万份 巨额净申购，显示机构逆势配置意愿强烈。连续5日净流入合计3.6亿元，资金趋势非常明确。广发近一月净流入3.28亿元，相对自身规模也属于大比例增长。
+  </div>
+</div>
+
+<!-- ===== 三、雪球社区声量 ===== -->
+<div class="card">
+  <h2><span class="icon">🔥</span> 三、雪球社区声量对比</h2>
+  <p style="font-size:13px; color:var(--text2); margin-bottom:16px;">基于雪球帖子搜索结果，统计两只产品在平台的讨论热度。</p>
+
+  <div class="metrics-row" style="margin-bottom:16px">
+    <div class="metric-card">
+      <div class="name">🔵 易方达 159566</div>
+      <div class="item"><span class="lbl">总讨论帖数</span><span><strong>约 1,000+</strong></span></div>
+      <div class="item"><span class="lbl">本周新帖数</span><span class="up"><strong>12 条</strong>（4/14-4/17）</span></div>
+      <div class="item"><span class="lbl">大V/机构发帖</span><span><strong>8 条</strong></span></div>
+      <div class="item"><span class="lbl">散户讨论帖</span><span>4 条</span></div>
+    </div>
+    <div class="metric-card">
+      <div class="name">🟠 广发 159305</div>
+      <div class="item"><span class="lbl">总讨论帖数</span><span><strong>约 673</strong></span></div>
+      <div class="item"><span class="lbl">本周新帖数</span><span><strong>1 条</strong>（4/14-4/17）</span></div>
+      <div class="item"><span class="lbl">大V/机构发帖</span><span><strong>1 条</strong>（文基起舞）</span></div>
+      <div class="item"><span class="lbl">散户讨论帖</span><span>0 条</span></div>
+    </div>
+  </div>
+
+  <h3>📊 本周讨论量可视化对比</h3>
+  <div style="margin:12px 0 8px;">
+    <div class="mention-bar">
+      <span class="lbl">大V/机构帖</span>
+      <div class="bar efund" style="width:240px;">8 条</div>
+      <div class="bar gfund" style="width:40px;">1 条</div>
+    </div>
+    <div class="mention-bar">
+      <span class="lbl">散户讨论帖</span>
+      <div class="bar efund" style="width:120px;">4 条</div>
+      <div class="bar gfund" style="width:10px;">0</div>
+    </div>
+    <div class="mention-bar">
+      <span class="lbl">总被提及数</span>
+      <div class="bar efund" style="width:320px;">1,000+</div>
+      <div class="bar gfund" style="width:200px;">673</div>
+    </div>
+    <div style="display:flex; gap:16px; margin-top:8px; font-size:12px; color:var(--text2);">
+      <span>🔵 易方达 159566</span><span>🟠 广发 159305</span>
+    </div>
+  </div>
+
+  <div class="highlight">
+    💡 <strong>声量差距</strong>：易方达本周新增帖子数量是广发的 <strong>12倍</strong>。总被提及量易方达超1000次 vs 广发673次。易方达在雪球的社区运营和讨论热度远超广发。
+  </div>
+</div>
+
+<!-- ===== 四、个基页粉丝关注 ===== -->
+<div class="card">
+  <h2><span class="icon">👥</span> 四、个基页粉丝关注情况</h2>
+  <p style="font-size:13px; color:var(--text2); margin-bottom:16px;">雪球API未公开基金页面粉丝数，以下基于社区活跃度与内容运营强度做间接评估。</p>
+  <table>
+    <thead>
+      <tr><th>维度</th><th>易方达 159566</th><th>广发 159305</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>官方账号</td>
+        <td><strong>易方达指数通</strong>（2.78万粉丝）<br>本周发帖 <span class="up">4篇</span></td>
+        <td>储能电池ETF广发（官方号）<br>本周无新帖</td>
+      </tr>
+      <tr>
+        <td>内容运营力度</td>
+        <td>⭐⭐⭐⭐⭐ 每日多条更新<br>早盘速报+深度分析+行业解读</td>
+        <td>⭐⭐ 以公告为主<br>无主动内容输出</td>
+      </tr>
+      <tr>
+        <td>散户讨论活跃度</td>
+        <td>⭐⭐⭐⭐ 多位散户自发讨论</td>
+        <td>⭐ 极少散户提及</td>
+      </tr>
+      <tr>
+        <td>雪球帖总量级</td>
+        <td>1,000+ 条（估算同标签）</td>
+        <td>673 条</td>
+      </tr>
+      <tr>
+        <td>社区关注度趋势</td>
+        <td class="up">↑ 本周持续升温<br>日均3条+新帖</td>
+        <td>→ 平稳偏冷<br>无明显变化</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="highlight">
+    💡 <strong>关注度差距核心原因</strong>：易方达指数通（官方号，2.78万粉丝）在雪球上保持高频内容运营，本周发布4篇深度内容，涵盖HALO资产逻辑、AI叙事、基本面业绩等多维度分析。广发官方号仅发布公告类内容，缺乏主动运营。
+  </div>
+</div>
+
+<!-- ===== 五、大V观点汇总 ===== -->
+<div class="card">
+  <h2><span class="icon">💬</span> 五、本周大V/机构观点汇总</h2>
+
+  <!-- 易方达指数通 -->
+  <div class="kol-item" style="border-left-color:#1a73e8;">
+    <div class="kol-header">
+      <span class="kol-name">易方达指数通</span>
+      <span class="tag tag-official">基金官方</span>
+      <span class="kol-fans">2.78万粉丝</span>
+      <span class="kol-date">4/14-4/15 共4篇</span>
+    </div>
+    <div class="kol-title">① 储能：超跌反弹修复后，AI叙事叠加强劲基本面或进一步支撑上涨（4/14）</div>
+    <div class="kol-content">指数上涨2.64%。储能经历深度回调后，资金压力释放+地缘缓和，强劲基本面业绩带动板块反弹。</div>
+    <br>
+    <div class="kol-title">② 备受关注的新 HALO 资产，景气度持续走高的储能是什么？（4/15）</div>
+    <div class="kol-content">全球市场定价逻辑迎来变化，从轻资产成长故事转向重资产、低淘汰、难替代的实体基建。储能作为增速快、需求刚性、景气度相对较高的资产尚未被充分认知。国证新能源电池指数4月来累计涨近10%，近一年年化收益率近100%。</div>
+    <br>
+    <div class="kol-title">③ 3月动力和储能电池产量持续增长，新能源板块迎来价值重估（4/13）</div>
+    <div class="kol-content">3月我国动力和储能电池合计产量177.7GWh，环比+25.5%，同比+50.2%。储能电池月销量60.4GWh，同比+115.9%。</div>
+    <br>
+    <div class="kol-title">④ 宁德创历史新高，电池行业景气度超预期</div>
+    <div class="kol-content">动力/储能电池月销量分别同比+31.1%/+115.9%，储能电池在高油价+容量电价+海外户储政策支持下景气度持续提升。</div>
+    <div class="kol-engagement">👍 合计10次点赞 · 💬 合计0评论</div>
+  </div>
+
+  <!-- 证券之星财经 -->
+  <div class="kol-item" style="border-left-color:#1565c0;">
+    <div class="kol-header">
+      <span class="kol-name">证券之星财经</span>
+      <span class="tag tag-media">财经媒体</span>
+      <span class="kol-fans">9.78万粉丝</span>
+      <span class="kol-date">4/13-4/15 共2篇</span>
+    </div>
+    <div class="kol-title">备受关注的新 HALO 资产，储能是什么？（4/15）</div>
+    <div class="kol-content">全球市场从追捧轻资产成长故事转向抢配重资产实体基建。国证新能源电池指数近一年年化收益率近100%。稀缺性重估浪潮中储能尚未被充分认知。</div>
+    <br>
+    <div class="kol-title">锂电龙头股价创新高，电池指数集体走强（4/13）</div>
+    <div class="kol-content">电池板块强势，国证新能源电池指数上涨2.1%，宁德时代盘中创历史新高，3月行业数据大超预期。</div>
+    <div class="kol-engagement">👍 2次点赞 · 💬 0评论</div>
+  </div>
+
+  <!-- 格隆汇 -->
+  <div class="kol-item" style="border-left-color:#2e7d32;">
+    <div class="kol-header">
+      <span class="kol-name">格隆汇</span>
+      <span class="tag tag-media">财经媒体</span>
+      <span class="kol-fans">9.51万粉丝</span>
+      <span class="kol-date">4/13 共2篇</span>
+    </div>
+    <div class="kol-title">宁德创历史新高，电池行业景气度超预期（4/13 · 提及159566）</div>
+    <div class="kol-content">宁德时代早盘直线拉升创历史新高，带动电池ETF易方达、储能电池ETF易方达涨超2%。3月行业数据超预期。</div>
+    <br>
+    <div class="kol-title">历史新高！储能赛道连日反弹（4/13 · 提及159305）</div>
+    <div class="kol-content">储能赛道连日反弹，关注储能电池ETF广发(159305)。</div>
+    <div class="kol-engagement">👍 3次点赞 · 💬 1评论</div>
+  </div>
+
+  <!-- 红袋鼠与招财猫 -->
+  <div class="kol-item" style="border-left-color:#e65100;">
+    <div class="kol-header">
+      <span class="kol-name">红袋鼠与招财猫</span>
+      <span class="tag tag-kol">雪球大V</span>
+      <span class="kol-fans">6.90万粉丝</span>
+      <span class="kol-date">4/13-4/16 共2篇</span>
+    </div>
+    <div class="kol-title">储能电池板块，或正处"戴维斯双击"时刻（4/16）</div>
+    <div class="kol-content">储能板块继续保持强势，储能电池ETF易方达上涨超2%。板块可能正处于"戴维斯双击"阶段——业绩增长与估值提升共振。</div>
+    <br>
+    <div class="kol-title">油价继续飙升，储能电池继续爆发（4/13）</div>
+    <div class="kol-content">国际油价保持110美元/桶高位，高油价背景下储能需求持续爆发。</div>
+    <div class="kol-engagement">👍 1次点赞 · 💬 0评论</div>
+  </div>
+
+  <!-- 文基起舞 -->
+  <div class="kol-item" style="border-left-color:#7b1fa2;">
+    <div class="kol-header">
+      <span class="kol-name">文基起舞</span>
+      <span class="tag tag-kol">雪球大V</span>
+      <span class="kol-fans">7.76万粉丝</span>
+      <span class="kol-date">4/14</span>
+    </div>
+    <div class="kol-title">储能迎来景气周期，一键布局储能电池ETF</div>
+    <div class="kol-content">同时提及两只产品：159566/易方达 和 159305/广发。"虽然说是电池，但也是全市场相对纯粹的储能标的了。"此前(4/3)还发布过银河基金电池行业调研：储能电池未来三年全球有望维持30%+增速。</div>
+    <div class="kol-engagement">👍 3次点赞 · 💬 0评论</div>
+  </div>
+
+  <!-- 选基小助手 -->
+  <div class="kol-item" style="border-left-color:#9e9e9e;">
+    <div class="kol-header">
+      <span class="kol-name">选基小助手</span>
+      <span class="tag tag-v">内容账号</span>
+      <span class="kol-fans">266粉丝</span>
+      <span class="kol-date">4/13-4/16 共5篇</span>
+    </div>
+    <div class="kol-content">
+      本周每日发布159566动态速报，核心信息汇总：<br>
+      · 4/16：净申购超4000万份，连续5日获资金净流入，合计3.6亿<br>
+      · 4/16早盘：净申购达4800万份，宁德Q1营收1291亿同比+52.45%<br>
+      · 4/15：逆势获超8000万份净申购，连续4日资金净流入合计1.7亿<br>
+      · 4/15早盘：钠离子电池"无热失控"技术突破，连续4日净流入<br>
+      · 4/13：半日获1300万份净申购，工信部部署规范产业竞争秩序
+    </div>
+    <div class="kol-engagement">👍 合计3次点赞 · 💬 0评论</div>
+  </div>
+</div>
+
+<!-- ===== 六、关键事件梳理 ===== -->
+<div class="card">
+  <h2><span class="icon">📅</span> 六、本周关键事件与催化</h2>
+  <table>
+    <thead>
+      <tr><th>时间</th><th>事件</th><th>影响</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>4/13-14</td>
+        <td><strong>宁德时代股价创历史新高</strong><br>Q1营收1291亿元，同比+52.45%</td>
+        <td class="up">龙头带动板块情绪，两只ETF周一均涨超2.7%</td>
+      </tr>
+      <tr>
+        <td>4/13</td>
+        <td><strong>3月电池行业数据发布</strong><br>产量177.7GWh（同比+50.2%）<br>储能电池月销60.4GWh（同比+115.9%）</td>
+        <td class="up">景气度超预期，确认基本面支撑</td>
+      </tr>
+      <tr>
+        <td>持续</td>
+        <td><strong>国际油价维持110美元/桶高位</strong><br>地缘谈判未取得实质进展</td>
+        <td class="up">高油价→新能源替代需求↑→储能景气度↑</td>
+      </tr>
+      <tr>
+        <td>4/15</td>
+        <td><strong>中科院钠离子电池技术突破</strong><br>实现安时级"无热失控"</td>
+        <td class="up">技术面催化，提升板块想象空间</td>
+      </tr>
+      <tr>
+        <td>4/10</td>
+        <td><strong>四部门召开电池行业座谈会</strong><br>推进产能预警调控、规范价格竞争</td>
+        <td class="up">政策利好，抑制恶性竞争保护行业利润</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== 七、综合对比 ===== -->
+<div class="card">
+  <h2><span class="icon">⚖️</span> 七、综合对比总览</h2>
+  <table>
+    <thead>
+      <tr><th>对比维度</th><th>易方达 159566</th><th>广发 159305</th><th>差距</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>最新市值</td>
+        <td><strong>79.8亿</strong></td>
+        <td>7.9亿</td>
+        <td class="up">10.1 : 1</td>
+      </tr>
+      <tr>
+        <td>日均成交额</td>
+        <td><strong>~5.7亿</strong></td>
+        <td>~6,900万</td>
+        <td class="up">8.3 : 1</td>
+      </tr>
+      <tr>
+        <td>本周涨幅</td>
+        <td>+3.10%</td>
+        <td>+3.02%</td>
+        <td>基本一致</td>
+      </tr>
+      <tr>
+        <td>年初至今</td>
+        <td>+11.85%</td>
+        <td>+11.99%</td>
+        <td>基本一致</td>
+      </tr>
+      <tr>
+        <td>雪球讨论帖总量</td>
+        <td><strong>1,000+</strong></td>
+        <td>673</td>
+        <td class="up">1.5 : 1</td>
+      </tr>
+      <tr>
+        <td>本周新增帖子</td>
+        <td><strong>12 条</strong></td>
+        <td>1 条</td>
+        <td class="up">12 : 1</td>
+      </tr>
+      <tr>
+        <td>大V提及次数</td>
+        <td><strong>8 条</strong>（5位KOL/媒体）</td>
+        <td>2 条（2位KOL/媒体）</td>
+        <td class="up">4 : 1</td>
+      </tr>
+      <tr>
+        <td>官方运营活跃度</td>
+        <td>⭐⭐⭐⭐⭐</td>
+        <td>⭐⭐</td>
+        <td class="up">易方达碾压</td>
+      </tr>
+      <tr>
+        <td>资金流入</td>
+        <td>连续5日净流入 3.6亿</td>
+        <td>近月净流入3.28亿</td>
+        <td>易方达短期更强</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== 八、运营洞察 ===== -->
+<div class="card">
+  <h2><span class="icon">🎯</span> 八、运营洞察与建议</h2>
+  
+  <h3>📌 核心发现</h3>
+  <div style="margin:8px 0 16px; font-size:14px; line-height:1.8;">
+    <strong>1. 内容运营差距是声量差距的根本原因</strong><br>
+    易方达通过"易方达指数通"账号（2.78万粉丝）在雪球保持日更级别的高频内容输出，内容覆盖早盘速报、深度分析、行业解读三层。广发官方号仅发布基金公告，缺乏主动内容运营。<br><br>
+    
+    <strong>2. 大V生态差距显著</strong><br>
+    本周有5位大V/机构主动提及159566，包括证券之星（9.78万粉）、格隆汇（9.51万粉）、红袋鼠与招财猫（6.90万粉）、文基起舞（7.76万粉）。159305仅被文基起舞和格隆汇各提及1次。大V自发传播力差距约4:1。<br><br>
+    
+    <strong>3. "选基小助手"角色值得关注</strong><br>
+    该账号粉丝仅266人，但专注于159566的每日动态速报，本周发帖5条，疑似基金公司配套的辅助运营账号。这种"矩阵运营"策略值得广发学习。<br><br>
+    
+    <strong>4. 行情表现几乎无差异，差距全在运营</strong><br>
+    两只ETF跟踪同一指数（国证新能源电池），本周涨幅仅差0.08个百分点，但雪球声量差距达12:1。说明产品力不是问题，运营力才是。
+  </div>
+
+  <h3>💡 广发追赶建议</h3>
+  <div style="margin:8px 0; font-size:14px; line-height:1.8;">
+    <strong>① 建立官方运营节奏：</strong>至少保持每交易日1-2条内容更新，涵盖盘中速报和行业观点<br>
+    <strong>② 构建大V合作网络：</strong>重点对接文基起舞、ETF令狐冲等已关注储能ETF赛道的KOL<br>
+    <strong>③ 差异化定位：</strong>可打"小而灵活"的标签，强调费率、跟踪误差等差异化优势<br>
+    <strong>④ 数据透明化：</strong>主动披露申赎数据、资金流向等，降低信息不对称
+  </div>
+</div>
+
+<!-- ===== Footer ===== -->
+<div class="footer">
+  <p>📊 数据来源：雪球API、公开市场数据 | 报告生成时间：2026年4月17日</p>
+  <p>⚠️ 本报告仅供雪球社区运营参考，不构成投资建议。</p>
+</div>
+
+</div>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7b3d4e98b7044c6b87fb096979d37e67","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
