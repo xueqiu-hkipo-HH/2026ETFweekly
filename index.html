@@ -3,548 +3,703 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>雪球脉搏 · 中国平安 2026-04-20</title>
+<title>一张图解释什么是 Snow-Pulse</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
   :root {
-    --bg: #0f1117;
-    --card: #1a1d26;
-    --border: #2a2d38;
-    --text: #e0e0e6;
-    --text2: #9a9caa;
-    --accent: #5b8def;
-    --green: #2ecc71;
-    --red: #e74c3c;
-    --orange: #f39c12;
-    --tag-bg: rgba(91,141,239,.12);
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --card-hover: #f0f2f8;
+    --border: rgba(0,0,0,.07);
+    --text: #1a1d2e;
+    --text2: #6b7085;
+    --blue: #3b6de7;
+    --blue2: #2553c7;
+    --cyan: #0891b2;
+    --purple: #7c5cdb;
+    --pink: #d94691;
+    --orange: #e07826;
+    --green: #16a362;
+    --red: #dc4545;
+    --gradient1: linear-gradient(135deg, #3b6de7 0%, #7c5cdb 100%);
+    --gradient2: linear-gradient(135deg, #0891b2 0%, #3b6de7 100%);
+    --gradient3: linear-gradient(135deg, #d94691 0%, #e07826 100%);
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
-    line-height: 1.7;
-    padding: 24px 0;
+    font-family: 'Inter', -apple-system, 'PingFang SC', 'Noto Sans SC', sans-serif;
+    line-height: 1.6;
     min-width: 375px;
-    max-width: 480px;
+    max-width: 520px;
     margin: 0 auto;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
-  .container { padding: 0 20px; }
 
-  /* Header */
-  .header {
+  /* ── Hero Section ── */
+  .hero {
+    position: relative;
+    padding: 48px 24px 36px;
     text-align: center;
-    padding: 28px 20px 20px;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 20px;
+    overflow: hidden;
   }
-  .header .logo {
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(59,109,231,.1) 0%, transparent 70%);
+    pointer-events: none;
   }
-  .header h1 {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-  .header .sub {
-    font-size: 13px;
-    color: var(--text2);
-  }
-  .price-row {
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-    gap: 10px;
-    margin-top: 14px;
-    padding: 12px 16px;
-    background: var(--card);
-    border-radius: 10px;
-    border: 1px solid var(--border);
-  }
-  .price-row .price { font-size: 28px; font-weight: 700; }
-  .price-row .change {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--green);
-    background: rgba(46,204,113,.1);
-    padding: 2px 8px;
-    border-radius: 6px;
-  }
-  .price-row .unit { font-size: 12px; color: var(--text2); }
-
-  /* Sections */
-  .section {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 16px;
-  }
-  .section-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .section-title .num {
-    background: var(--accent);
-    color: #fff;
-    width: 22px; height: 22px;
-    border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 800;
-  }
-
-  /* Attribution */
-  .attr-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-  }
-  .attr-row:last-child { border-bottom: none; }
-  .attr-label { color: var(--text2); }
-  .attr-value { font-weight: 600; }
-  .badge {
+  .hero .badge {
     display: inline-block;
     font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    background: rgba(59,109,231,.08);
+    border: 1px solid rgba(59,109,231,.2);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
   }
-  .badge-low { background: rgba(154,156,170,.15); color: var(--text2); }
-  .badge-green { background: rgba(46,204,113,.12); color: var(--green); }
-  .conclusion-box {
-    margin-top: 12px;
-    padding: 10px 12px;
-    background: rgba(91,141,239,.06);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 8px 8px 0;
-    font-size: 13px;
+  .hero h1 {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #1a1d2e 30%, var(--blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero .tagline {
+    font-size: 14px;
     color: var(--text2);
+    max-width: 380px;
+    margin: 0 auto 20px;
+  }
+  .hero .kpi-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  .kpi {
+    text-align: center;
+  }
+  .kpi .num {
+    font-size: 28px;
+    font-weight: 900;
+    background: var(--gradient1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .kpi .label {
+    font-size: 10px;
+    color: var(--text2);
+    letter-spacing: 1px;
+    text-transform: uppercase;
   }
 
-  /* Activity table */
-  .act-grid {
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,.08), transparent);
+    margin: 0 24px;
+  }
+
+  /* ── Section titles ── */
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue);
+    text-align: center;
+    margin: 28px 0 6px;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* ── Pain Points ── */
+  .pains {
+    padding: 0 20px;
+    margin-bottom: 24px;
+  }
+  .pain-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .pain-item:last-child { border-bottom: none; }
+  .pain-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59,109,231,.06);
+    border-radius: 10px;
+  }
+  .pain-text .q { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+  .pain-text .a { font-size: 11.5px; color: var(--text2); }
+  .pain-text .a em { color: var(--cyan); font-style: normal; font-weight: 600; }
+
+  /* ── Flow ── */
+  .flow-container {
+    padding: 0 20px 24px;
+  }
+  .flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    position: relative;
+  }
+  .flow-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    padding: 0 4px;
+  }
+  .flow-dot {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin: 0 auto 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .flow-step:nth-child(1) .flow-dot { background: rgba(59,109,231,.1); border: 2px solid var(--blue); }
+  .flow-step:nth-child(2) .flow-dot { background: rgba(8,145,178,.1); border: 2px solid var(--cyan); }
+  .flow-step:nth-child(3) .flow-dot { background: rgba(124,92,219,.1); border: 2px solid var(--purple); }
+  .flow-step:nth-child(4) .flow-dot { background: rgba(217,70,145,.1); border: 2px solid var(--pink); }
+  .flow-label { font-size: 11px; font-weight: 700; margin-bottom: 2px; }
+  .flow-desc { font-size: 10px; color: var(--text2); line-height: 1.4; }
+  .flow-line {
+    position: absolute;
+    top: 20px;
+    left: calc(50% + 24px);
+    right: calc(-50% + 24px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    z-index: 0;
+  }
+  .flow-step:last-child .flow-line { display: none; }
+
+  /* ── Module Cards ── */
+  .modules {
+    padding: 0 16px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    margin-bottom: 14px;
+    margin-bottom: 24px;
   }
-  .act-item {
-    background: rgba(255,255,255,.03);
-    border-radius: 8px;
-    padding: 10px 12px;
-  }
-  .act-item .label { font-size: 11px; color: var(--text2); margin-bottom: 2px; }
-  .act-item .val { font-size: 18px; font-weight: 700; }
-  .act-item .note { font-size: 11px; color: var(--text2); }
-  .act-wide {
-    grid-column: 1 / -1;
-  }
-  .sentiment-bar {
-    display: flex;
-    height: 8px;
-    border-radius: 4px;
+  .mod-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    position: relative;
     overflow: hidden;
-    margin: 8px 0 4px;
+    transition: background .2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
   }
-  .sentiment-bar .bull { background: var(--red); }
-  .sentiment-bar .bear { background: var(--green); }
-  .sentiment-bar .neutral { background: #555; }
-  .sentiment-labels {
-    display: flex;
-    justify-content: space-between;
+  .mod-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 14px 14px 0 0;
+  }
+  .mod-card:nth-child(1)::before { background: var(--gradient2); }
+  .mod-card:nth-child(2)::before { background: var(--gradient1); }
+  .mod-card:nth-child(3)::before { background: var(--gradient3); }
+  .mod-card:nth-child(4)::before { background: linear-gradient(135deg, var(--green), var(--cyan)); }
+  .mod-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text2);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .mod-card:nth-child(1) .mod-num { color: var(--cyan); }
+  .mod-card:nth-child(2) .mod-num { color: var(--blue); }
+  .mod-card:nth-child(3) .mod-num { color: var(--pink); }
+  .mod-card:nth-child(4) .mod-num { color: var(--green); }
+  .mod-title {
+    font-size: 15px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .mod-q {
     font-size: 11px;
     color: var(--text2);
+    margin-bottom: 8px;
   }
-  .topics {
+  .mod-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 10px;
+    gap: 4px;
   }
-  .topic-tag {
-    background: var(--tag-bg);
-    color: var(--accent);
-    font-size: 12px;
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-weight: 500;
+  .mod-tag {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(59,109,231,.06);
+    color: var(--text2);
   }
 
-  /* Hot posts */
-  .post-card {
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border);
+  /* ── Sample Report ── */
+  .sample {
+    margin: 0 16px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
   }
-  .post-card:last-of-type { border-bottom: none; }
-  .post-header {
+  .sample-header {
+    padding: 14px 16px;
+    background: rgba(59,109,231,.04);
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
+    gap: 10px;
   }
-  .post-rank {
-    background: var(--accent);
-    color: #fff;
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    display: inline-flex;
+  .sample-icon {
+    width: 36px; height: 36px;
+    background: var(--gradient1);
+    border-radius: 10px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 18px;
     flex-shrink: 0;
   }
-  .post-rank.r4, .post-rank.r5 { background: #555; }
-  .post-author { font-size: 13px; font-weight: 600; }
-  .post-meta { font-size: 11px; color: var(--text2); margin-left: auto; }
-  .post-quote {
-    font-size: 14px;
-    padding: 8px 12px;
-    background: rgba(255,255,255,.04);
-    border-radius: 8px;
-    margin-bottom: 8px;
-    border-left: 3px solid var(--accent);
+  .sample-header .name { font-size: 14px; font-weight: 700; }
+  .sample-header .meta { font-size: 11px; color: var(--text2); }
+  .sample-header .price {
+    margin-left: auto;
+    text-align: right;
   }
-  .post-quote::before { content: "「"; color: var(--text2); }
-  .post-quote::after { content: "」"; color: var(--text2); }
-  .author-reply {
+  .sample-header .price .val { font-size: 18px; font-weight: 800; }
+  .sample-header .price .chg { font-size: 12px; color: var(--red); font-weight: 600; }
+  .sample-body {
+    padding: 14px 16px;
+  }
+  .sample-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,.04);
     font-size: 12px;
-    color: var(--text2);
-    padding: 6px 10px;
-    background: rgba(91,141,239,.06);
-    border-radius: 6px;
-    margin-bottom: 8px;
   }
-  .author-reply .tag {
-    color: var(--accent);
+  .sample-row:last-child { border-bottom: none; }
+  .sample-row .l { color: var(--text2); }
+  .sample-row .r { font-weight: 700; }
+  .sentiment-mini {
+    display: flex;
+    gap: 8px;
+    font-size: 11px;
     font-weight: 600;
-    font-size: 11px;
   }
-  .post-stats {
-    font-size: 11px;
-    color: var(--text2);
-    display: flex;
-    gap: 12px;
-    margin-bottom: 8px;
-  }
-  .reader-comment {
-    font-size: 12px;
-    padding: 6px 0;
-    display: flex;
-    gap: 6px;
-    align-items: flex-start;
-  }
-  .reader-comment .name { color: var(--text2); flex-shrink: 0; }
-  .sentiment-tag {
-    font-size: 10px;
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-  .sentiment-tag.bull { background: rgba(231,76,60,.15); color: var(--red); }
-  .sentiment-tag.bear { background: rgba(46,204,113,.15); color: var(--green); }
-  .sentiment-tag.neutral { background: rgba(154,156,170,.15); color: var(--text2); }
-  .reader-text { color: var(--text); }
-  .reader-note { font-size: 11px; color: var(--text2); font-style: italic; }
-  .divergence-box {
+  .sentiment-mini .bull { color: var(--red); }
+  .sentiment-mini .bear { color: var(--green); }
+  .sentiment-mini .neut { color: var(--text2); }
+  .sample-quote {
     margin-top: 10px;
-    padding: 8px 12px;
+    padding: 10px 12px;
+    background: rgba(59,109,231,.05);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0;
     font-size: 12px;
-    color: var(--text2);
-    background: rgba(255,255,255,.03);
-    border-radius: 8px;
   }
+  .sample-quote .author { color: var(--blue); font-weight: 600; }
+  .sample-quote .text { color: var(--text2); margin-top: 2px; }
+  .sample-tag-row {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .verdict-tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 6px;
+    background: rgba(124,92,219,.1);
+    color: var(--purple);
+  }
+  .verdict-text { font-size: 11.5px; color: var(--text2); }
 
-  /* Comment / IM */
-  .comment-section {
+  /* ── Delivery ── */
+  .delivery {
+    padding: 0 16px;
+    margin-bottom: 24px;
+  }
+  .del-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .del-item {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 18px;
-    margin-bottom: 16px;
+    padding: 14px 10px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
   }
-  .comment-text {
-    font-size: 14px;
-    line-height: 1.8;
+  .del-icon { font-size: 24px; margin-bottom: 6px; }
+  .del-name { font-size: 12px; font-weight: 700; margin-bottom: 2px; }
+  .del-freq { font-size: 10px; color: var(--text2); }
+
+  /* ── CTA ── */
+  .cta {
+    margin: 0 16px 32px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(59,109,231,.06), rgba(124,92,219,.06));
+    border: 1px solid rgba(59,109,231,.15);
+    border-radius: 16px;
+    text-align: center;
   }
-  .dim-tag {
-    display: inline-block;
-    background: rgba(154,156,170,.15);
-    color: var(--text2);
-    font-size: 12px;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-weight: 700;
-    margin-right: 4px;
+  .cta .headline {
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .cta .sub { font-size: 12px; color: var(--text2); margin-bottom: 14px; }
+  .cta .steps {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+  .cta .step-pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: rgba(59,109,231,.04);
+    border: 1px solid var(--border);
+  }
+  .cta .step-pill .n {
+    color: var(--blue);
+    margin-right: 3px;
   }
 
-  .im-box {
-    background: linear-gradient(135deg, rgba(91,141,239,.08), rgba(91,141,239,.02));
-    border: 1px solid rgba(91,141,239,.2);
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    font-size: 13px;
-    line-height: 1.8;
-  }
-  .im-box .im-title {
-    font-weight: 700;
-    font-size: 13px;
-    margin-bottom: 6px;
-    color: var(--accent);
-  }
-
-  /* Footer */
+  /* ── Footer ── */
   .footer {
     text-align: center;
-    padding: 16px 0 24px;
-    font-size: 11px;
-    color: #555;
+    padding: 12px 0 28px;
+    font-size: 10px;
+    color: #aaa;
   }
+
+  /* ── Versus table ── */
+  .vs-table {
+    margin: 0 16px 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .vs-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  .vs-table thead {
+    background: rgba(59,109,231,.06);
+  }
+  .vs-table th {
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 700;
+    color: var(--blue);
+    border-bottom: 1px solid var(--border);
+  }
+  .vs-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(0,0,0,.04);
+    vertical-align: top;
+  }
+  .vs-table tr:last-child td { border-bottom: none; }
+  .vs-table .dim { color: var(--text2); }
+  .vs-table .win { color: var(--blue); font-weight: 600; }
 </style>
 </head>
 <body>
 
-<!-- Header -->
-<div class="header">
-  <div class="logo">❄️ Snow-Pulse · 雪球脉搏</div>
-  <h1>中国平安</h1>
-  <div class="sub">02318.HK · 2026-04-20（周日）· 港股单端</div>
-  <div class="price-row">
-    <span class="unit">HKD</span>
-    <span class="price">61.20</span>
-    <span class="change">+0.99%</span>
+<!-- ════ HERO ════ -->
+<div class="hero">
+  <div class="badge">❄️ Snow-Pulse</div>
+  <h1>一张图解释<br>什么是雪球脉搏</h1>
+  <p class="tagline">基于雪球社区真实投资者讨论的<strong>每日舆情切片</strong><br>让上市公司每天比散户更懂散户</p>
+  <div class="kpi-row">
+    <div class="kpi"><div class="num">100+</div><div class="label">日均采集帖数</div></div>
+    <div class="kpi"><div class="num">4</div><div class="label">分析模块</div></div>
+    <div class="kpi"><div class="num">5min</div><div class="label">出报告</div></div>
   </div>
 </div>
 
-<div class="container">
+<div class="divider"></div>
 
-  <!-- 一、行情归因 -->
-  <div class="section">
-    <div class="section-title"><span class="num">1</span> 行情归因</div>
-    <div class="attr-row">
-      <span class="attr-label">个股涨跌</span>
-      <span class="attr-value" style="color:var(--green)">+0.99%</span>
-    </div>
-    <div class="attr-row">
-      <span class="attr-label">恒生指数（HKHSI）</span>
-      <span class="attr-value" style="color:var(--green)">+0.67%</span>
-    </div>
-    <div class="attr-row">
-      <span class="attr-label">个股超额</span>
-      <span class="attr-value">+0.32% <span class="badge badge-green">✅ &lt;1.5%</span></span>
-    </div>
-    <div class="attr-row">
-      <span class="attr-label">成交量信号</span>
-      <span class="attr-value">0.73× <span class="badge badge-low">正常量</span></span>
-    </div>
-    <div class="conclusion-box">
-      <span class="badge badge-low">置信度：低</span><br>
-      个股超额 +0.32%，与恒指高度同步，无个股特有催化判断依据。港股大盘反弹联动，无独立催化剂。
+<!-- ════ PAIN POINTS ════ -->
+<div class="section-label">PAIN POINTS</div>
+<div class="section-title">上市公司的五个"不知道"</div>
+<div class="pains">
+  <div class="pain-item">
+    <div class="pain-icon">😰</div>
+    <div class="pain-text">
+      <div class="q">不知道散户在聊什么</div>
+      <div class="a">人工翻帖=随机抽样 → <em>全量采集 100-150 帖/天</em></div>
     </div>
   </div>
-
-  <!-- 二、社区活跃度 -->
-  <div class="section">
-    <div class="section-title"><span class="num">2</span> 社区活跃度</div>
-    <div class="act-grid">
-      <div class="act-item">
-        <div class="label">当日讨论帖</div>
-        <div class="val">18 <span style="font-size:12px;font-weight:400;color:var(--text2)">条</span></div>
-        <div class="note">首跑无基线 · 周日低量</div>
-      </div>
-      <div class="act-item">
-        <div class="label">总评论数</div>
-        <div class="val">9 <span style="font-size:12px;font-weight:400;color:var(--text2)">条</span></div>
-      </div>
-      <div class="act-item">
-        <div class="label">总阅读数</div>
-        <div class="val">20.0 <span style="font-size:12px;font-weight:400;color:var(--text2)">万</span></div>
-        <div class="note">18/18 帖有阅读数据</div>
-      </div>
-      <div class="act-item">
-        <div class="label">互动密度</div>
-        <div class="val">0.5 <span style="font-size:12px;font-weight:400;color:var(--text2)">评论/帖</span></div>
-        <div class="note">📢 广播为主</div>
-      </div>
-      <div class="act-item act-wide">
-        <div class="label">情绪分布（18帖全量打标，样本偏少）</div>
-        <div class="sentiment-bar">
-          <div class="bull" style="width:28%"></div>
-          <div class="bear" style="width:44%"></div>
-          <div class="neutral" style="width:28%"></div>
-        </div>
-        <div class="sentiment-labels">
-          <span>🟥 多 28%</span>
-          <span>🟩 空 44%</span>
-          <span>⬜ 中 28%</span>
-        </div>
-      </div>
-    </div>
-    <div style="font-size:12px;color:var(--text2);margin-bottom:6px;">主话题</div>
-    <div class="topics">
-      <span class="topic-tag">#股价支撑位讨论（6帖）</span>
-      <span class="topic-tag">#平安消金人事变动（3帖）</span>
-      <span class="topic-tag">#AI降本与行业比较（3帖）</span>
-    </div>
-    <div style="font-size:11px;color:#555;margin-top:10px;">基线：首跑无基线　·　登录态翻页全量采集，非抽样</div>
-  </div>
-
-  <!-- 三、热帖 Top 5 -->
-  <div class="section">
-    <div class="section-title"><span class="num">3</span> 雪球热帖 Top 5</div>
-
-    <!-- Post 1 -->
-    <div class="post-card">
-      <div class="post-header">
-        <span class="post-rank">1</span>
-        <span class="post-author">@浩气的翻倍小猎豹</span>
-        <span class="post-meta">HK端 · 09:59</span>
-      </div>
-      <div class="post-quote">珍惜58元以下的中国平安。</div>
-      <div class="post-stats">
-        <span>💬 2</span> <span>👍 5</span> <span>🔁 0</span>
-        <a href="https://xueqiu.com/6534738229/384672065" style="color:var(--accent);text-decoration:none;margin-left:auto;">原帖 →</a>
-      </div>
-      <div style="font-size:11px;color:var(--text2);margin-bottom:6px;">读者高赞</div>
-      <div class="reader-comment">
-        <span class="name">@还是还是算了（赞1）</span>
-        <span class="sentiment-tag bear">bear</span>
-        <span class="reader-text">「今年是平安这一轮的下跌元年，明后年还有跌的」</span>
-      </div>
-      <div class="reader-comment">
-        <span class="name">@信赖的基金小录音室</span>
-        <span class="sentiment-tag bear">bear</span>
-        <span class="reader-text">「珍惜你妹，过几天就55了」</span>
-      </div>
-      <div class="reader-note">← 高赞 ≠ 认同，直接反驳楼主</div>
-    </div>
-
-    <!-- Post 2 -->
-    <div class="post-card">
-      <div class="post-header">
-        <span class="post-rank">2</span>
-        <span class="post-author">@紫色神光</span>
-        <span class="post-meta">HK端 · 11:46</span>
-      </div>
-      <div class="post-quote">AI提效对保险利润弹性影响最大——人工成本占利润比重是关键</div>
-      <div class="author-reply">
-        <span class="tag">楼主回复（1条）</span><br>
-        「保险和物流在AI时代的利润正是依靠这个逻辑」
-      </div>
-      <div class="post-stats">
-        <span>💬 2</span> <span>👍 1</span> <span>🔁 0</span>
-        <a href="https://xueqiu.com/9492055521/384702460" style="color:var(--accent);text-decoration:none;margin-left:auto;">原帖 →</a>
-      </div>
-      <div style="font-size:11px;color:var(--text2);margin-bottom:6px;">读者高赞</div>
-      <div class="reader-comment">
-        <span class="name">@交通银行课代表（赞1）</span>
-        <span class="sentiment-tag bull">bull</span>
-        <span class="reader-text">「请珍惜60以下的平安。」</span>
-      </div>
-    </div>
-
-    <!-- Post 3 -->
-    <div class="post-card">
-      <div class="post-header">
-        <span class="post-rank">3</span>
-        <span class="post-author">@冥河摆渡人</span>
-        <span class="post-meta">HK端 · 10:42</span>
-      </div>
-      <div class="post-quote">啥时候能去碰一下60天线...</div>
-      <div class="author-reply">
-        <span class="tag">楼主回复（1条）</span><br>
-        「60天线会下来的，180天后怎么也碰到了。希望不要这么被动，给点力上去碰」
-      </div>
-      <div class="post-stats">
-        <span>💬 2</span> <span>👍 1</span> <span>🔁 0</span>
-        <a href="https://xueqiu.com/3642913843/384685982" style="color:var(--accent);text-decoration:none;margin-left:auto;">原帖 →</a>
-      </div>
-      <div style="font-size:11px;color:var(--text2);margin-bottom:6px;">读者高赞</div>
-      <div class="reader-comment">
-        <span class="name">@持续买入forever</span>
-        <span class="sentiment-tag bear">bear</span>
-        <span class="reader-text">「下辈子」</span>
-      </div>
-    </div>
-
-    <!-- Post 4 -->
-    <div class="post-card">
-      <div class="post-header">
-        <span class="post-rank r4">4</span>
-        <span class="post-author">@嘉一_hk</span>
-        <span class="post-meta">HK端 · 11:04</span>
-      </div>
-      <div class="post-quote">早上忙错过了低点，60.6还是加了一点点，今年下半年非常看好大金融股</div>
-      <div class="post-stats">
-        <span>💬 1</span> <span>👍 2</span> <span>🔁 0</span>
-        <a href="https://xueqiu.com/4082770089/384692204" style="color:var(--accent);text-decoration:none;margin-left:auto;">原帖 →</a>
-      </div>
-      <div style="font-size:11px;color:var(--text2);margin-bottom:6px;">读者高赞</div>
-      <div class="reader-comment">
-        <span class="name">@爱人的赚钱小高山</span>
-        <span class="sentiment-tag neutral">neutral</span>
-        <span class="reader-text">「看好的依据是啥？降息？」</span>
-      </div>
-    </div>
-
-    <!-- Post 5 -->
-    <div class="post-card">
-      <div class="post-header">
-        <span class="post-rank r5">5</span>
-        <span class="post-author">@康德最严厉的母亲</span>
-        <span class="post-meta">HK端 · 09:55</span>
-      </div>
-      <div class="post-quote">以前很讨厌股票不涨就在讨论区哔哔赖赖的人，买了这只票后变成了自己最讨厌的人</div>
-      <div class="post-stats">
-        <span>💬 0</span> <span>👍 5</span> <span>🔁 0</span>
-        <a href="https://xueqiu.com/6794688039/384670600" style="color:var(--accent);text-decoration:none;margin-left:auto;">原帖 →</a>
-      </div>
-      <div style="font-size:12px;color:var(--text2);font-style:italic;">评论稀少，未采到有效样本</div>
-    </div>
-
-    <div class="divergence-box">
-      背离检测：楼主 bull 3/5、bear 2/5，方向未达阈值（≥3/5），且读者样本仅 4 条 → 不触发
+  <div class="pain-item">
+    <div class="pain-icon">📉</div>
+    <div class="pain-text">
+      <div class="q">股价跌了老板问为什么</div>
+      <div class="a">凭感觉猜原因 → <em>四层归因法，当天给答案</em></div>
     </div>
   </div>
-
-  <!-- 四、点评 -->
-  <div class="comment-section">
-    <div class="section-title"><span class="num">4</span> 一句话轻点评</div>
-    <div class="comment-text">
-      <span class="dim-tag">平淡</span>
-      周日讨论量仅 18 帖，互动极低（0.5 评论/帖）。多空双方围绕 55–60 元支撑位反复拉锯，但缺乏新增信息量。平安消金管理层变动是唯一实质性话题线索，尚未引发广泛讨论。
+  <div class="pain-item">
+    <div class="pain-icon">🌡️</div>
+    <div class="pain-text">
+      <div class="q">不知道情绪转没转</div>
+      <div class="a">无法量化"市场情绪" → <em>逐帖打标 bull/bear/neutral</em></div>
     </div>
   </div>
-
-  <!-- IM 速递 -->
-  <div class="im-box">
-    <div class="im-title">📱 IM 速递（可直接复制转发）</div>
-    【雪球脉搏 · 中国平安 2026-04-20】<br>
-    +0.99% · 讨论 18 帖（首跑·周日低量）<br>
-    【平淡】多空围绕55-60元支撑位拉锯，平安消金高管换帅话题线索尚弱<br>
-    代表观点：@浩气的翻倍小猎豹「珍惜58元以下的中国平安」vs 读者「珍惜你妹，过几天就55了」
+  <div class="pain-item">
+    <div class="pain-icon">🔥</div>
+    <div class="pain-text">
+      <div class="q">大V发了负面帖没看到</div>
+      <div class="a">发现时已发酵 → <em>热帖 Top5 实时穿透到评论</em></div>
+    </div>
   </div>
+  <div class="pain-item">
+    <div class="pain-icon">📊</div>
+    <div class="pain-text">
+      <div class="q">月报缺社区维度</div>
+      <div class="a">只有媒体舆情+股价图 → <em>日报积累自动生成月度趋势</em></div>
+    </div>
+  </div>
+</div>
 
+<div class="divider"></div>
+
+<!-- ════ DATA FLOW ════ -->
+<div class="section-label">HOW IT WORKS</div>
+<div class="section-title">数据采集 → 分析 → 交付</div>
+<div class="flow-container">
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-dot">📡</div>
+      <div class="flow-line"></div>
+      <div class="flow-label">全量采集</div>
+      <div class="flow-desc">当日讨论帖<br>翻页到底</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-dot">🧠</div>
+      <div class="flow-line"></div>
+      <div class="flow-label">智能分析</div>
+      <div class="flow-desc">情绪打标<br>话题聚类</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-dot">🔗</div>
+      <div class="flow-line"></div>
+      <div class="flow-label">归因关联</div>
+      <div class="flow-desc">股价×社区<br>交叉验证</div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-dot">📱</div>
+      <div class="flow-label">即时交付</div>
+      <div class="flow-desc">长图+速递<br>秒级转发</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ════ 4 MODULES ════ -->
+<div class="section-label">CORE MODULES</div>
+<div class="section-title">报告四大模块</div>
+<div class="modules">
+  <div class="mod-card">
+    <div class="mod-num">MODULE 01</div>
+    <div class="mod-title">行情归因</div>
+    <div class="mod-q">今天为什么涨/跌？</div>
+    <div class="mod-tags">
+      <span class="mod-tag">板块过滤</span>
+      <span class="mod-tag">催化剂</span>
+      <span class="mod-tag">成交量</span>
+      <span class="mod-tag">Price-in</span>
+    </div>
+  </div>
+  <div class="mod-card">
+    <div class="mod-num">MODULE 02</div>
+    <div class="mod-title">社区活跃度</div>
+    <div class="mod-q">多少人在聊？什么情绪？</div>
+    <div class="mod-tags">
+      <span class="mod-tag">帖数</span>
+      <span class="mod-tag">阅读量</span>
+      <span class="mod-tag">互动率</span>
+      <span class="mod-tag">情绪分布</span>
+    </div>
+  </div>
+  <div class="mod-card">
+    <div class="mod-num">MODULE 03</div>
+    <div class="mod-title">热帖 Top 5</div>
+    <div class="mod-q">谁在说？读者怎么吵？</div>
+    <div class="mod-tags">
+      <span class="mod-tag">楼主观点</span>
+      <span class="mod-tag">读者反应</span>
+      <span class="mod-tag">背离检测</span>
+    </div>
+  </div>
+  <div class="mod-card">
+    <div class="mod-num">MODULE 04</div>
+    <div class="mod-title">一句话点评</div>
+    <div class="mod-q">今天一句话总结</div>
+    <div class="mod-tags">
+      <span class="mod-tag">认知偏差</span>
+      <span class="mod-tag">情绪异常</span>
+      <span class="mod-tag">叙事转折</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ════ LIVE SAMPLE ════ -->
+<div class="section-label">LIVE EXAMPLE</div>
+<div class="section-title">真实报告长这样</div>
+<div class="sample">
+  <div class="sample-header">
+    <div class="sample-icon">🐧</div>
+    <div>
+      <div class="name">腾讯控股</div>
+      <div class="meta">00700.HK · 2026-04-20</div>
+    </div>
+    <div class="price">
+      <div class="val">523</div>
+      <div class="chg">+2.45%</div>
+    </div>
+  </div>
+  <div class="sample-body">
+    <div class="sample-row">
+      <span class="l">📄 讨论帖</span>
+      <span class="r">97 条</span>
+    </div>
+    <div class="sample-row">
+      <span class="l">💬 评论</span>
+      <span class="r">252 条</span>
+    </div>
+    <div class="sample-row">
+      <span class="l">👁 阅读</span>
+      <span class="r">149.7 万</span>
+    </div>
+    <div class="sample-row">
+      <span class="l">📊 情绪</span>
+      <span class="r">
+        <span class="sentiment-mini">
+          <span class="bull">🔴 多 42%</span>
+          <span class="bear">🟢 空 22%</span>
+          <span class="neut">⬜ 中 36%</span>
+        </span>
+      </span>
+    </div>
+    <div class="sample-row">
+      <span class="l">🔍 归因</span>
+      <span class="r" style="color:var(--cyan)">超额 +1.98%</span>
+    </div>
+    <div class="sample-quote">
+      <div class="author">🔥 今日最热 · @巍巍昆仑侠（赞55 · 评23）</div>
+      <div class="text">「传 DeepSeek 融资洽谈马化腾——相当于给腾讯基础大模型上了保险」</div>
+    </div>
+    <div class="sample-tag-row">
+      <span class="verdict-tag">叙事转折</span>
+      <span class="verdict-text">DeepSeek 融资×腾讯今日首次大规模发酵</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ════ VS TABLE ════ -->
+<div class="section-label">WHY US</div>
+<div class="section-title">vs 传统媒体舆情</div>
+<div class="vs-table">
+  <table>
+    <thead><tr><th>维度</th><th class="dim">传统舆情</th><th>雪球脉搏</th></tr></thead>
+    <tbody>
+      <tr><td>数据源</td><td class="dim">媒体稿件</td><td class="win">真实投资者讨论帖</td></tr>
+      <tr><td>视角</td><td class="dim">PR 公关向</td><td class="win">IR 投资者关系向</td></tr>
+      <tr><td>深度</td><td class="dim">标题级正/负</td><td class="win">帖级穿透 + 评论互动</td></tr>
+      <tr><td>股价关联</td><td class="dim">无</td><td class="win">四层归因闭环</td></tr>
+      <tr><td>出报告</td><td class="dim">次日/周</td><td class="win">5 分钟</td></tr>
+      <tr><td>越用越准</td><td class="dim">无积累</td><td class="win">基线自动进化</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="divider"></div>
+
+<!-- ════ DELIVERY ════ -->
+<div class="section-label">DELIVERY</div>
+<div class="section-title">交付体系</div>
+<div class="delivery">
+  <div class="del-grid">
+    <div class="del-item">
+      <div class="del-icon">📋</div>
+      <div class="del-name">日报</div>
+      <div class="del-freq">每交易日</div>
+    </div>
+    <div class="del-item">
+      <div class="del-icon">📈</div>
+      <div class="del-name">月度通报</div>
+      <div class="del-freq">趋势汇总</div>
+    </div>
+    <div class="del-item">
+      <div class="del-icon">📑</div>
+      <div class="del-name">季度回顾</div>
+      <div class="del-freq">深度诊断</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ CTA ════ -->
+<div class="cta">
+  <div class="headline">3 步 · 5 分钟 · 出报告</div>
+  <div class="sub">任何销售都能跑，当场 Demo 给客户看</div>
+  <div class="steps">
+    <div class="step-pill"><span class="n">①</span> 输入股票代码</div>
+    <div class="step-pill"><span class="n">②</span> 自动采集分析</div>
+    <div class="step-pill"><span class="n">③</span> 生成长图交付</div>
+  </div>
 </div>
 
 <div class="footer">
-  Snow-Pulse · 数据源：雪球社区 + 新闻流<br>
-  Generated 2026-04-20
+  Snow-Pulse · 雪球脉搏<br>
+  让上市公司每天比散户更懂散户
 </div>
 
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"7b3d4e98b7044c6b87fb096979d37e67","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
